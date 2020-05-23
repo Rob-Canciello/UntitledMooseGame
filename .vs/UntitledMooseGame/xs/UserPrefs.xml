@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{8B6831DE-4A45-A01A-8F21-B04246E5055D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RobAssets/RobScripts/Player.cs">
+    <Files>
+      <File FileName="Assets/RobAssets/RobScripts/Interact.cs" Line="81" Column="2" />
+      <File FileName="Assets/RobAssets/Standard Assets/Characters/FirstPersonCharacter/Scripts/HeadBob.cs" />
+      <File FileName="Assets/RobAssets/RobScripts/Player.cs" Line="8" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="40e7d4df-13c1-4f6e-81bf-bf711f18fd2e" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
