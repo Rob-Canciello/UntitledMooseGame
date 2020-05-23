@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
 	"process_id" : 66879,
+=======
+	"process_id" : 1288,
+>>>>>>> erwinbranch
 	"version" : "2019.3.14f1",
 	"app_path" : "/Users/dave/Documents/2019.3.14f1/Unity.app",
 	"app_contents_path" : "/Users/dave/Documents/2019.3.14f1/Unity.app/Contents"
