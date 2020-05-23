@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 1600531429354256487}
   - component: {fileID: 1600531429354256484}
   - component: {fileID: 2081280925}
+  - component: {fileID: 89287883}
   m_Layer: 0
   m_Name: 'Player '
   m_TagString: Player
@@ -559,3 +560,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &89287883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600531428419718886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32d0927b75a04306b8ccd208641df18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
+  survivalTime: 0
+  timeNeededToWin: 10
+  food: 100
+  foodDecreaseRate: 0.1
+  water: 100
+  waterDecreaseRate: 0.25
+  entertainment: 100
+  entertainmentDecreaseRate: 0.075
+  mood: 100
+  moodDecreaseRate: 0.75
+  fadeOutImage: {fileID: 0}
+  rb: {fileID: 1600531428416531840}
