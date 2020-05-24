@@ -24,8 +24,7 @@ namespace Com.MyCompany.MooseGame
 
 
         #region Private Fields
-
-
+        bool isConnecting;
 
         /// <summary>
         /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
@@ -74,6 +73,7 @@ namespace Com.MyCompany.MooseGame
         /// </summary>
         public void Connect()
         {
+            
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
@@ -84,8 +84,8 @@ namespace Com.MyCompany.MooseGame
             }
             else
             {
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
                 // #Critical, we must first and foremost connect to Photon Online Server.
-                PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = gameVersion;
             }
         }
@@ -104,23 +104,39 @@ namespace Com.MyCompany.MooseGame
         public override void OnJoinedRoom()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-        }
+        
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            {
+                Debug.Log("We load the 'Main' ");
 
+
+                // #Critical
+                // Load the Room Level.
+                PhotonNetwork.LoadLevel("Main");
+            }
+        }
+        // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
         #region MonoBehaviourPunCallbacks Callbacks
 
 
         public override void OnConnectedToMaster()
         {
-            Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-            PhotonNetwork.JoinRandomRoom();
+           if (isConnecting)
+            {
+                // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
+                PhotonNetwork.JoinRandomRoom();
+                isConnecting = false;
+            }
         }
 
 
         public override void OnDisconnected(DisconnectCause cause)
         {
+            isConnecting = false;
+            
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);   
-            
+
             Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
