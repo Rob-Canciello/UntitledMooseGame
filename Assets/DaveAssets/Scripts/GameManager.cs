@@ -14,11 +14,16 @@ namespace Com.MyCompany.MooseGame
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        [Tooltip("The prefab to use for representing the player")]
+        public GameObject playerPrefab;
+        public static GameManager Instance;
+
         #region Photon Callbacks
 
         /// <summary>
         /// Called when the local player left the room. We need to load the launcher scene.
         /// </summary>
+
         public override void OnLeftRoom()
         {
             SceneManager.LoadScene(0);
@@ -28,12 +33,9 @@ namespace Com.MyCompany.MooseGame
         {
             Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
 
-
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-
-
                 LoadArena();
             }
         }
@@ -57,7 +59,6 @@ namespace Com.MyCompany.MooseGame
 
 
         #region Public Methods
-        public static GameManager Instance;
 
         void Start()
         {
@@ -85,8 +86,6 @@ namespace Com.MyCompany.MooseGame
             PhotonNetwork.LeaveRoom();
         }
 
-        [Tooltip("The prefab to use for representing the player")]
-        public GameObject playerPrefab;
 
 
         #endregion

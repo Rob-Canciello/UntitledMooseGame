@@ -204,11 +204,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -217,40 +223,44 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11178}
     - Class: 114
+      Script: {instanceID: 11322}
+    - Class: 114
+      Script: {instanceID: 11342}
+    - Class: 114
       Script: {instanceID: 11380}
     - Class: 114
       Script: {instanceID: 11426}
     - Class: 114
+      Script: {instanceID: 11810}
+    - Class: 114
       Script: {instanceID: 11892}
-    - Class: 114
-      Script: {instanceID: 12154}
-    - Class: 114
-      Script: {instanceID: 12180}
     - Class: 114
       Script: {instanceID: 12258}
     - Class: 114
       Script: {instanceID: 12390}
     - Class: 114
+      Script: {instanceID: 12518}
+    - Class: 114
       Script: {instanceID: 12608}
     - Class: 114
-      Script: {instanceID: 12674}
+      Script: {instanceID: 12822}
+    - Class: 114
+      Script: {instanceID: 12840}
     - Class: 114
       Script: {instanceID: 12976}
-    - Class: 114
-      Script: {instanceID: 13004}
     - Class: 114
       Script: {instanceID: 13324}
     - Class: 114
       Script: {instanceID: 13408}
+    - Class: 114
+      Script: {instanceID: 13446}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 124
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
-    - Class: 134
+    - Class: 137
       Script: {instanceID: 0}
-    - Class: 136
+    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -263,6 +273,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
