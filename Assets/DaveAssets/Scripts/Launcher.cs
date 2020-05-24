@@ -108,11 +108,14 @@ namespace Com.MyCompany.MooseGame
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
                 Debug.Log("We load the 'Main' ");
-
-
                 // #Critical
                 // Load the Room Level.
                 PhotonNetwork.LoadLevel("Main");
+            }
+            // *MAY HAVE TO REMOVE - WE ADDED OURSELVES*
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            {
+                Debug.Log("Player 2 Entered");
             }
         }
         // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
@@ -133,7 +136,7 @@ namespace Com.MyCompany.MooseGame
         public override void OnDisconnected(DisconnectCause cause)
         {
             isConnecting = false;
-            
+
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);   
 

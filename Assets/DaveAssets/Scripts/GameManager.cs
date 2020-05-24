@@ -57,7 +57,12 @@ namespace Com.MyCompany.MooseGame
 
 
         #region Public Methods
+        public static GameManager Instance;
 
+        void Start()
+        {
+            Instance = this;
+        }
 
         public void LeaveRoom()
         {
