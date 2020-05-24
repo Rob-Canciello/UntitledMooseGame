@@ -1,124 +1,142 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PlayerController : MonoBehaviour
-{
-    public bool isAlive = true;
-    private bool canExit = false;
-
-    public float survivalTime = 0.0f;
-    public float timeNeededToWin = 30.0f;
-
-    [Header("SURVIVAL METERS")]
-    [Range(0.0f, 100.0f)] public float food = 100f;
-    [SerializeField] private float foodDecreaseRate = 0.05f;
-
-    [Range(0.0f,100.0f)] public float water = 100f;
-    [SerializeField] private float waterDecreaseRate = 0.5f;
-
-    [Range(0.0f, 100.0f)] public float entertainment = 100f;
-    [SerializeField] private float entertainmentDecreaseRate = 0.25f;
-
-    [Range(0.0f, 100.0f)] public float mood = 100f;
-    [SerializeField] private float moodDecreaseRate = 0.25f;
+using Photon.Pun;
+using Photon.Realtime;
 
 
-    public Image fadeOutImage;
-
-    private Vector3 startPos;
-    public Rigidbody rb;
-
-    // Start is called before the first frame update
-    void Awake()
+namespace Com.MyCompany.MooseGame{
+    public class PlayerController : MonoBehaviourPunCallbacks
     {
-        fadeOutImage.enabled = false;
-        startPos = transform.position;
-    }
+        [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+        public static GameObject LocalPlayerInstance;
 
-    // Update is called once per frame
-    void Update()
-    {
-        survivalTime += Time.deltaTime;
+        public bool isAlive = true;
+        private bool canExit = false;
 
-        DecreaseFood();
-        DecreaseWater();
-        DecreaseEntertainment();
-        DecreaseMood();
+        public float survivalTime = 0.0f;
+        public float timeNeededToWin = 30.0f;
 
-        if (survivalTime >= timeNeededToWin && canExit == false)
+        [Header("SURVIVAL METERS")]
+        [Range(0.0f, 100.0f)] public float food = 100f;
+        [SerializeField] private float foodDecreaseRate = 0.05f;
+
+        [Range(0.0f,100.0f)] public float water = 100f;
+        [SerializeField] private float waterDecreaseRate = 0.5f;
+
+        [Range(0.0f, 100.0f)] public float entertainment = 100f;
+        [SerializeField] private float entertainmentDecreaseRate = 0.25f;
+
+        [Range(0.0f, 100.0f)] public float mood = 100f;
+        [SerializeField] private float moodDecreaseRate = 0.25f;
+
+
+        public Image fadeOutImage;
+
+        private Vector3 startPos;
+        public Rigidbody rb;
+
+        // Start is called before the first frame update
+        void Awake()
         {
-            print("You can leave now!");
+            fadeOutImage.enabled = false;
+            startPos = transform.position;
 
-            canExit = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "EndGameTrigger")
-        {
-            if(canExit && isAlive)
+            if (photonView.IsMine)
             {
-                // REPLACE WITH END GAME COROUTINE
-                print("You win!");
-                // *Added for PUN*
-                // GameManger.Instance.LeaveRoom();
-            }
-            else
-            {
-                // DIE SHOULD BE A COROUTINE
-                StartCoroutine("Die");
+                PlayerController.LocalPlayerInstance = this.gameObject;
             }
         }
-    }
 
-    IEnumerator Die()
-    {
-        isAlive = false;
-        print("You died!");
+        // Update is called once per frame
+        void Update()
+        {
+            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
 
-        fadeOutImage.enabled = true;
+            survivalTime += Time.deltaTime;
 
-        // DISABLE PLAYER MOVEMENT
-        rb.isKinematic = true;
+            DecreaseFood();
+            DecreaseWater();
+            DecreaseEntertainment();
+            DecreaseMood();
 
-        yield return new WaitForSeconds(1f);
+            if (survivalTime >= timeNeededToWin && canExit == false)
+            {
+                print("You can leave now!");
 
-        // MOVE THEM BACK TO THEIR ORIGINAL POSITION
-        transform.position = startPos;
+                canExit = true;
+            }
+        }
 
-        // RESET STATS
-        food = 100f;
-        water = 100f;
-        entertainment = 100f;
-        mood = 100f;
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.tag == "EndGameTrigger")
+            {
+                if(canExit && isAlive)
+                {
+                    // REPLACE WITH END GAME COROUTINE
+                    print("You win!");
+                    // *Added for PUN*
+                    // GameManger.Instance.LeaveRoom();
+                }
+                else
+                {
+                    // DIE SHOULD BE A COROUTINE
+                    StartCoroutine("Die");
+                }
+            }
+        }
 
-       
-        yield return new WaitForSeconds(4f);
+        IEnumerator Die()
+        {
+            isAlive = false;
+            print("You died!");
 
-        fadeOutImage.enabled = false;
+            fadeOutImage.enabled = true;
 
-        // Makes player move again
-        rb.isKinematic = false;
+            // DISABLE PLAYER MOVEMENT
+            rb.isKinematic = true;
 
-        isAlive = true;
-    }
+            yield return new WaitForSeconds(1f);
 
-    void DecreaseFood()
-    {
-        food -= Time.deltaTime * foodDecreaseRate;
-    }
-    void DecreaseWater()
-    {
-        water -= Time.deltaTime * waterDecreaseRate;
-    }
-    void DecreaseEntertainment()
-    {
-        entertainment -= Time.deltaTime * entertainmentDecreaseRate;
-    }
-    void DecreaseMood()
-    {
-        mood -= Time.deltaTime * moodDecreaseRate;
+            // MOVE THEM BACK TO THEIR ORIGINAL POSITION
+            transform.position = startPos;
+
+            // RESET STATS
+            food = 100f;
+            water = 100f;
+            entertainment = 100f;
+            mood = 100f;
+
+        
+            yield return new WaitForSeconds(4f);
+
+            fadeOutImage.enabled = false;
+
+            // Makes player move again
+            rb.isKinematic = false;
+
+            isAlive = true;
+        }
+
+        void DecreaseFood()
+        {
+            food -= Time.deltaTime * foodDecreaseRate;
+        }
+        void DecreaseWater()
+        {
+            water -= Time.deltaTime * waterDecreaseRate;
+        }
+        void DecreaseEntertainment()
+        {
+            entertainment -= Time.deltaTime * entertainmentDecreaseRate;
+        }
+        void DecreaseMood()
+        {
+            mood -= Time.deltaTime * moodDecreaseRate;
+        }
     }
 }
