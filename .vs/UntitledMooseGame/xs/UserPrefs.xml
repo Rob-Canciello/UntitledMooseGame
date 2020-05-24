@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{8B6831DE-4A45-A01A-8F21-B04246E5055D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RobAssets/RobScripts/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RobAssets/RobScripts/Launcher.cs">
     <Files>
       <File FileName="Assets/RobAssets/RobScripts/Interact.cs" Line="81" Column="2" />
-      <File FileName="Assets/RobAssets/Standard Assets/Characters/FirstPersonCharacter/Scripts/HeadBob.cs" />
-      <File FileName="Assets/RobAssets/RobScripts/Player.cs" Line="8" Column="16" />
+      <File FileName="Assets/RobAssets/Standard Assets/Characters/FirstPersonCharacter/Scripts/HeadBob.cs" Line="33" Column="1" />
+      <File FileName="Assets/RobAssets/RobScripts/Launcher.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
