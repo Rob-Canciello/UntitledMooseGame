@@ -1,4 +1,4 @@
-# Blender MTL File: 'untitled.blend'
+# Blender MTL File: 'Moosey character.blend'
 # Material Count: 2
 
 newmtl Material__419.003
@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd Mii_OBJ/deer_obj/dg01.bmp
+map_Kd /Volumes/Storage/UnitiyProjects/UntitledMooseGame/Assets/ErwinAssets/models/Mii_OBJ/deer_obj/dg01.bmp
 
 newmtl Mii_texture.004
 Ns 46.000004
